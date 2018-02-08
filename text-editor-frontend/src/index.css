@@ -1,0 +1,151 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+  width: 100%;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.Editor {
+  width: 100%;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleArea {
+  height: 2rem;
+  width: 95%;
+  font-size: 24px;
+  border: 1px solid grey;
+  border-radius: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentArea {
+  height: 6rem;
+  width: 95%;
+  font-size: 20px;
+  border: 1px solid gray;
+  border-radius: 1rem;
+}
+
+.posts {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100px;
+  border-bottom: 1px solid lightgrey;
+  height: 150px;
+  width: 100%;
+  margin-top: 0;
+  overflow-y: scroll;
+}
+
+
+.searchContainer {
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  height: 1.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: .5rem;
+  padding-top: .2rem;
+  /* border-bottom: 1px solid grey; */
+}
+.search{
+  position: fixed;
+  background: whitesmoke;
+  height: 1.5rem;
+  width: 50%;
+  margin-top: .2rem;
+  border-radius: .3rem;
+  box-shadow: 0;
+  border: 1px solid lightgray;
+  font-style: italic;
+
+}
+
+ul {
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  margin-top: 2.5rem;
+}
+
+li {
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: -webkit-auto;
+}
+
+.titleSpan {
+  font-weight: 700;
+}
+
+.contentSpan {
+  font-weight: 200;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.post {
+  width: 7rem;
+  border-radius: 1rem;
+  background: springgreen;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.deletePost {
+  position: absolute;
+  right: 5rem;
+  height: auto;
+  width: 3.5rem;
+  background-color: red;
+  border-radius: 1rem;
+  color:white;
+  border: none;
+  font-size: 12px;
+}
