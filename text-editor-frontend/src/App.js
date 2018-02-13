@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Editor from './MainText'
+import Editor from './Editor'
+// import { API } from './config';
+// import axios from 'axios';
+
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">

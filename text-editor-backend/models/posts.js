@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const connection = require('../database');
 
-const Posts = connection.define('post', {
+const Post = connection.define('post', {
     title: {
         type: Sequelize.STRING
     },
@@ -9,3 +9,5 @@ const Posts = connection.define('post', {
         type: Sequelize.STRING
     }
 });
+
+module.exports = Post

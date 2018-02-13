@@ -1,9 +1,7 @@
 import React from 'react';
-// import { findDOMNode } from 'react-dom';
-import $ from 'jquery';
-// import {Router, Route} from 'react-router';
-
-// this.handleId = this.handleId.bind(this);  
+import { API } from './config';
+import axios from 'axios';
+  
 
 class Posts extends React.Component {
     render(){
@@ -13,28 +11,31 @@ class Posts extends React.Component {
                     <li key={post.id}>
                         <div className="titleSpan">{post.title}</div>
                         <div className="contentSpan">{post.content}</div>
-                        <button className="deletePost" value={post.id} onClick={this.deleteId.bind(this)}>Delete</button>
+                        <div>Sent at {new Date(post.createdAt).toLocaleTimeString()}</div>
+                        <button className="editPost" value={post.id} onClick={this.handleEdit.bind(this)}>Edit</button>
+                        <button className="deletePost" value={post.id} onClick={this.handleDelete.bind(this)}>Delete</button>
                     </li>
                 ))}
             </ul>
         )
     }
-    deleteId(event) {
-        event.preventDefault(); 
-        console.log(event.target.value);
-        let deleteURL = 'http://localhost:3000/posts/' + event.target.value
-        $.ajax({
-            type: 'DELETE',
-            url: deleteURL,
-            dataType: "JSON",
-            success: function () {
-                console.log('Deleting Post');
-            },
-            error: function () {
-                console.log('error');
-            }
-        })      
+    handleDelete(event) {
+        event.preventDefault();
+        const postToDelete = {
+            id: event.target.value,
+        }
+        axios.delete(`${API}/blog/${postToDelete.id}`, postToDelete)
+            .then((result) => {
+                // console.log(this)
+                // console.log(result)
+                this.props.handleDelete(postToDelete.id);
+        })
+    }
+
+    handleEdit(event){
+
     }
 }
+
 
 export default Posts

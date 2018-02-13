@@ -3,6 +3,7 @@ import Posts from './Posts';
 import axios from 'axios'; 
 import { API } from './config';
 
+
 class Editor extends Component {
     constructor(props) {
         super(props);
@@ -10,13 +11,28 @@ class Editor extends Component {
             posts: [],
             title: '',
             content: '' ,
-            isEnabled: false
+            isEnabled: false,
+            isEditing: false,
             };
     
     this.handleTitle = this.handleTitle.bind(this);       
     this.handleContent = this.handleContent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
 
+}
+
+componentDidMount(){
+  setInterval(() => {
+    axios.get(`${API}/blog`)
+    .then(res => res.data)
+    .then(posts => {
+        this.setState({
+        posts: posts,
+        currentIndex: 0
+        })
+    })
+  }, 1000); 
 }
 
 render() {
@@ -38,7 +54,7 @@ render() {
                 <span className="searchContainer">
                 <input className="search" placeholder="Search" />
                 </span>
-                <Posts posts={this.state.posts} />
+                <Posts posts={this.state.posts} handleDelete={this.handleDelete} />
             </span>
         </div>
     )
@@ -48,8 +64,6 @@ render() {
         this.setState({content: event.target.value});
     }
 
-
-
     handleTitle(event) {
         this.setState({title: event.target.value});
     }
@@ -57,7 +71,7 @@ render() {
     handleSubmit(event) {
         // debugger;
         event.preventDefault();
-        event.target.reset();
+        
 
         const newPost = {
             title: this.state.title,
@@ -68,12 +82,20 @@ render() {
             .then(post => {
                 this.setState(prevState => ({
                 posts: prevState.posts.concat(post)
-        }))
-        console.log(post);
-         })
-        }
+            }))
+            console.log(post)
+        })
+        event.target.reset();
     }
 
-
+    handleDelete(id){
+        // console.log("You deleted an item")
+        this.setState({
+            posts: this.state.posts.filter(post =>{
+                return post.id !== id;
+            })
+        })
+    }
+}
 
 export default Editor

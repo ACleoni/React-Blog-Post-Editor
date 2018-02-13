@@ -12,8 +12,6 @@ router.all('*', (req, res, next) => {
 
 router.route('/')
     .post((req, res) => {
-        console.log(req.body);
-
         Post.create({
             title: req.body.title,
             content: req.body.content
@@ -25,6 +23,22 @@ router.route('/')
         Post.findAll()
         .then(posts =>{
             res.json(posts);
+        })
+    })
+
+router.route('/:id')
+    .delete((req, res)=>{
+        // console.log("You are going to delete this post...")
+        Post.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(result => {
+            result.destroy()
+                .then(() => {
+                    console.log("post deleted")
+                    res.send({message:`Deleted post ${req.params.id}`})
+                })
         })
     })
 
