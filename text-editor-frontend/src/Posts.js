@@ -11,7 +11,7 @@ class Posts extends React.Component {
                     <li key={post.id}>
                         <div className="titleSpan">{post.title}</div>
                         <div className="contentSpan">{post.content}</div>
-                        <div>Sent at {new Date(post.createdAt).toLocaleTimeString()}</div>
+                        <div className="timeStamp">Sent at {new Date(post.createdAt).toLocaleTimeString()}</div>
                         <button className="editPost" value={post.id} onClick={this.handleEdit.bind(this)}>Edit</button>
                         <button className="deletePost" value={post.id} onClick={this.handleDelete.bind(this)}>Delete</button>
                     </li>
@@ -19,6 +19,7 @@ class Posts extends React.Component {
             </ul>
         )
     }
+
     handleDelete(event) {
         event.preventDefault();
         const postToDelete = {
@@ -33,7 +34,7 @@ class Posts extends React.Component {
     }
 
     handleEdit(event){
-
+        event.preventDefault();
     }
 }
 

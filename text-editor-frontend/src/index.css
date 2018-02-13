@@ -138,12 +138,30 @@ form {
   color: white;
 }
 
+.timeStamp {
+  font-size: 10px;
+  color: black;
+  font-style: italic;
+}
+
 .deletePost {
+  position: absolute;
+  right: .5rem;
+  height: auto;
+  width: 3.5rem;
+  background-color: red;
+  border-radius: 1rem;
+  color:white;
+  border: none;
+  font-size: 12px;
+}
+
+.editPost {
   position: absolute;
   right: 5rem;
   height: auto;
   width: 3.5rem;
-  background-color: red;
+  background-color: darkgoldenrod;
   border-radius: 1rem;
   color:white;
   border: none;

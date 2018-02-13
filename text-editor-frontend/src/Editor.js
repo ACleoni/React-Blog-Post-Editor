@@ -19,6 +19,7 @@ class Editor extends Component {
     this.handleContent = this.handleContent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
 
 }
 
@@ -46,7 +47,7 @@ render() {
             <h3 className="content">
                 Content
             </h3>
-                <textarea type="text" className="contentArea" onChange={this.handleContent} placeholder="500 Characters Max" maxLength="300" />
+                <textarea type="text" className="contentArea" onChange={this.handleContent} placeholder="250 Characters Max" maxLength="250" />
                 <p>{this.state.content.length } character(s)</p>
                 <button disabled={this.isEnabled} className="post">Post Now!</button>
                 </form>  
@@ -54,7 +55,7 @@ render() {
                 <span className="searchContainer">
                 <input className="search" placeholder="Search" />
                 </span>
-                <Posts posts={this.state.posts} handleDelete={this.handleDelete} />
+                <Posts posts={this.state.posts} handleDelete={this.handleDelete} handleEdit={this.handleEdit} />
             </span>
         </div>
     )
@@ -89,10 +90,19 @@ render() {
     }
 
     handleDelete(id){
-        // console.log("You deleted an item")
+        // console.log("Post " + this.state.id + " removed")
         this.setState({
             posts: this.state.posts.filter(post =>{
                 return post.id !== id;
+            })
+        })
+            alert("Post " + id + " removed")
+    }
+
+    handleEdit(v){
+        this.setState = ({
+            posts: this.state.posts.map(post =>{
+                return post
             })
         })
     }
